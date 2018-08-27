@@ -1,0 +1,23 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+dependencies {
+    implementation gradleApi()
+    implementation 'com.squareup:javapoet:1.11.1'
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+// local deploy
+group = "ru.alexeyp"
+version = "0.0.1"
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository (url: "file:///$buildDir/m2repo")
+        }
+    }
+}
+
