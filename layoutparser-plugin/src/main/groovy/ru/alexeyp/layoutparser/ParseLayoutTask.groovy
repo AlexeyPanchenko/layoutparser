@@ -19,6 +19,14 @@ class ParseLayoutTask extends DefaultTask {
 
   @TaskAction
   def generate() {
-    layoutFiles.findAll { it.name.startsWith('r_') }
+    layoutFiles
+            .findAll { it.name.startsWith('r_') }
+            .each {generate(it)}
+  }
+
+  void generate(File xmlFile) {
+    XmlParser parser = new XmlParser()
+    new XmlParserFacade(parser).parse(xmlFile)
+    println "PARSE: ${parser.elements}"
   }
 }
