@@ -1,23 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<ru.alexeyp.layoutparser.Parser
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/constt"
+    android:id="@+id/pparser"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
+
+  <android.support.constraint.ConstraintLayout
+      xmlns:android="http://schemas.android.com/apk/res/android"
+      android:id="@+id/constt"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      >
 
     <TextView
         android:id="@+id/tv_first"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        />
 
     <Button
         android:id="@+id/btn_first"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        />
 
     <Button
         android:id="@+id/btn_first2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        />
 
-</android.support.constraint.ConstraintLayout>
+    <WebView
+        android:id="@+id/asd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+      <View
+          android:id="@+id/qqq"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"/>
+
+      <ViewGroup
+          android:id="@+id/qsdqq"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"/>
+
+    </WebView>
+
+  </android.support.constraint.ConstraintLayout>
+</ru.alexeyp.layoutparser.Parser>

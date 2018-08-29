@@ -1,5 +1,6 @@
 package ru.alexeyp.layoutparser;
 
+import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.FieldSpec;
 import com.squareup.javapoet.TypeSpec;
 
@@ -21,13 +22,19 @@ public class InflaterGenerator {
   }
 
   private TypeSpec generateClass() {
-    return TypeSpec
+    TypeSpec.Builder builder =  TypeSpec
             .classBuilder(className)
-            .addModifiers(Modifier.PUBLIC)
-            .build();
+            .addModifiers(Modifier.PUBLIC);
+
+    elements.forEach(element -> builder.addField(getViewField(element)));
+
+    return builder.build();
   }
 
-  private FieldSpec getViewField() {
+  private FieldSpec getViewField(XmlElement element) {
+    return FieldSpec
+        .builder(ClassName.get(element.pckgName, element.type), element.id, Modifier.PUBLIC, Modifier.FINAL)
+        .build();
   }
 
 }

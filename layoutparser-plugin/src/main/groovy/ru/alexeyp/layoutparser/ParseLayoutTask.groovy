@@ -28,5 +28,6 @@ class ParseLayoutTask extends DefaultTask {
     XmlParser parser = new XmlParser()
     new XmlParserFacade(parser).parse(xmlFile)
     println "PARSE: ${parser.elements}"
+
   }
 }
