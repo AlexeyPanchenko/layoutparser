@@ -2,39 +2,69 @@ package ru.alexeyp.layoutparser;
 
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.FieldSpec;
+import com.squareup.javapoet.MethodSpec;
+import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 
-import javax.lang.model.element.Modifier;
 import java.util.List;
+
+import javax.lang.model.element.Modifier;
+
+import static ru.alexeyp.layoutparser.Const.CONTEXT;
+import static ru.alexeyp.layoutparser.Const.CONTEXT_NAME;
+import static ru.alexeyp.layoutparser.Const.CONTEXT_PCKG;
+import static ru.alexeyp.layoutparser.Const.R;
+import static ru.alexeyp.layoutparser.Const.ROOT_VIEW_NAME;
+import static ru.alexeyp.layoutparser.Const.inflater;
+import static ru.alexeyp.layoutparser.Const.view;
 
 public class InflaterGenerator {
 
   private final String className;
+  private final String layoutName;
   private final List<XmlElement> elements;
 
-  public InflaterGenerator(String className, String pckgProject, List<XmlElement> elements) {
+  private final TypeName r;
+
+  public InflaterGenerator(String className, String layoutName, String pckgProject, List<XmlElement> elements) {
     this.className = className;
+    this.layoutName = layoutName;
     this.elements = elements;
+    this.r = ClassName.get(pckgProject, R);
   }
 
   public TypeSpec generate() {
-    return null;
+    return generateClass();
   }
 
   private TypeSpec generateClass() {
     TypeSpec.Builder builder =  TypeSpec
-            .classBuilder(className)
-            .addModifiers(Modifier.PUBLIC);
+        .classBuilder(className)
+        .addModifiers(Modifier.PUBLIC)
+        .addField(view, ROOT_VIEW_NAME, Modifier.PUBLIC, Modifier.FINAL)
+        .addMethod(formConstructor());
 
-    elements.forEach(element -> builder.addField(getViewField(element)));
+    elements.forEach(element -> builder.addField(formViewField(element)));
 
     return builder.build();
   }
 
-  private FieldSpec getViewField(XmlElement element) {
+  private FieldSpec formViewField(XmlElement element) {
     return FieldSpec
         .builder(ClassName.get(element.pckgName, element.type), element.id, Modifier.PUBLIC, Modifier.FINAL)
         .build();
   }
+
+  private MethodSpec formConstructor() {
+    MethodSpec.Builder builder = MethodSpec.constructorBuilder()
+        .addModifiers(Modifier.PUBLIC)
+        .addParameter(ClassName.get(CONTEXT_PCKG, CONTEXT), CONTEXT_NAME)
+        .addStatement(ROOT_VIEW_NAME + " = $T.from(" + CONTEXT_NAME + ").inflate($T.layout." + layoutName + ", null)", inflater, r);
+
+    elements.forEach(element ->
+        builder.addStatement(element.id + " = " + ROOT_VIEW_NAME + ".findViewById($T.id." + element.id + ")", r));
+    return builder.build();
+  }
+
 
 }
