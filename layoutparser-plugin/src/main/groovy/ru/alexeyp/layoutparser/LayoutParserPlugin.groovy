@@ -7,7 +7,7 @@ import org.gradle.api.Project
 class LayoutParserPlugin implements Plugin<Project> {
 
   private final String LAYOUT_DIR = "/src/main/res/layout"
-  private final String GENERATED = "generated/source/layoutparser/"
+  private final String GENERATED = "generated/source/${Const.LAYOUTPARSER_NAME}/"
 
   @Override
   void apply(Project project) {

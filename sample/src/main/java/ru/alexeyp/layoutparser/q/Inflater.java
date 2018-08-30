@@ -15,7 +15,7 @@ public class Inflater {
   public final ConstraintLayout constt;
 
   public Inflater(Context context) {
-    View view = LayoutInflater.from(context).inflate(R.layout.r_file, null);
+    View view = LayoutInflater.from(context).inflate(R.layout.i_file, null);
     btn_first = view.findViewById(R.id.btn_first);
     v = view.findViewById(R.id.all);
     constt = view.findViewById(R.id.constt);

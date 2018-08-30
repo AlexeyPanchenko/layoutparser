@@ -44,7 +44,11 @@ public class InflaterGenerator {
         .addField(view, ROOT_VIEW_NAME, Modifier.PUBLIC, Modifier.FINAL)
         .addMethod(formConstructor());
 
-    elements.forEach(element -> builder.addField(formViewField(element)));
+    for (XmlElement element : elements) {
+      if (element.isValid()) {
+        builder.addField(formViewField(element));
+      }
+    }
 
     return builder.build();
   }
@@ -61,10 +65,12 @@ public class InflaterGenerator {
         .addParameter(ClassName.get(CONTEXT_PCKG, CONTEXT), CONTEXT_NAME)
         .addStatement(ROOT_VIEW_NAME + " = $T.from(" + CONTEXT_NAME + ").inflate($T.layout." + layoutName + ", null)", inflater, r);
 
-    elements.forEach(element ->
-        builder.addStatement(element.id + " = " + ROOT_VIEW_NAME + ".findViewById($T.id." + element.id + ")", r));
+    for (XmlElement element : elements) {
+      if (element.isValid()) {
+        builder.addStatement(element.id + " = " + ROOT_VIEW_NAME + ".findViewById($T.id." + element.id + ")", r);
+      }
+    }
     return builder.build();
   }
-
 
 }

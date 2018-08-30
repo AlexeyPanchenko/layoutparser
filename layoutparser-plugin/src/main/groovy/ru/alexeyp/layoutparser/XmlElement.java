@@ -12,6 +12,10 @@ public class XmlElement {
     this.pckgName = pckgName;
   }
 
+  public boolean isValid() {
+    return id != null && type != null && pckgName != null;
+  }
+
   @Override
   public String toString() {
     return "XmlElement{" +
