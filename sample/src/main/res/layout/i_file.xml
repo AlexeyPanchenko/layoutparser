@@ -11,6 +11,7 @@
       android:id="@+id/constt"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
+
       >
 
     <TextView
@@ -47,6 +48,8 @@
           android:layout_height="wrap_content"/>
 
     </WebView>
+
+    <include layout="@layout/inner"/>
 
   </android.support.constraint.ConstraintLayout>
 </ru.alexeyp.layoutparser.Parser>

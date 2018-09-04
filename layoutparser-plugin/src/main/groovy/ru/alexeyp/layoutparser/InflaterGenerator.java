@@ -10,13 +10,15 @@ import java.util.List;
 
 import javax.lang.model.element.Modifier;
 
-import static ru.alexeyp.layoutparser.Const.CONTEXT;
-import static ru.alexeyp.layoutparser.Const.CONTEXT_NAME;
-import static ru.alexeyp.layoutparser.Const.CONTEXT_PCKG;
-import static ru.alexeyp.layoutparser.Const.R;
-import static ru.alexeyp.layoutparser.Const.ROOT_VIEW_NAME;
-import static ru.alexeyp.layoutparser.Const.inflater;
-import static ru.alexeyp.layoutparser.Const.view;
+import ru.alexeyp.layoutparser.parse.XmlElement;
+
+import static ru.alexeyp.layoutparser.utils.Const.CONTEXT;
+import static ru.alexeyp.layoutparser.utils.Const.CONTEXT_NAME;
+import static ru.alexeyp.layoutparser.utils.Const.CONTEXT_PCKG;
+import static ru.alexeyp.layoutparser.utils.Const.R;
+import static ru.alexeyp.layoutparser.utils.Const.ROOT_VIEW_NAME;
+import static ru.alexeyp.layoutparser.utils.Const.inflater;
+import static ru.alexeyp.layoutparser.utils.Const.view;
 
 public class InflaterGenerator {
 

@@ -1,13 +1,16 @@
-package ru.alexeyp.layoutparser
+package ru.alexeyp.layoutparser.plugin
 
 import org.gradle.api.GradleException
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import ru.alexeyp.layoutparser.ParseLayoutTask
+import ru.alexeyp.layoutparser.utils.Const
 
+/**
+ * Gradle plugin for register task that can inflate xml layout files.
+ * @see ParseLayoutTask.
+ */
 class LayoutParserPlugin implements Plugin<Project> {
-
-  private final String LAYOUT_DIR = "/src/main/res/layout"
-  private final String GENERATED = "generated/source/${Const.LAYOUTPARSER_NAME}/"
 
   @Override
   void apply(Project project) {
@@ -25,14 +28,15 @@ class LayoutParserPlugin implements Plugin<Project> {
   }
 
   private void generateInflater(Project project, variant) {
-    File[] xmlFiles = new File("${project.projectDir}$LAYOUT_DIR").listFiles()
-    File outputDir = new File(project.buildDir, "$GENERATED${variant.dirName}")
+    File[] xmlFiles = new File("${project.projectDir}$Const.LAYOUT_DIR").listFiles()
+    File outputDir = new File(project.buildDir, "$Const.GENERATED_DIR${variant.dirName}")
     def task = project.tasks.create(
             "parseLayout${variant.name.capitalize()}", ParseLayoutTask
     ) {
       outDir = outputDir
       layoutFiles = xmlFiles
       projectPckg = variant.applicationId
+      variantName = variant.name
     }
     variant.registerJavaGeneratingTask task, outputDir
   }

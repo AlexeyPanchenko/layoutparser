@@ -1,4 +1,4 @@
-package ru.alexeyp.layoutparser
+package ru.alexeyp.layoutparser.parse
 
 import org.xml.sax.helpers.DefaultHandler
 

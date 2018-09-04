@@ -1,4 +1,4 @@
-package ru.alexeyp.layoutparser
+package ru.alexeyp.layoutparser.utils
 
 /**
  * Form file name to CamelCase style.
@@ -10,5 +10,9 @@ static String formClassNameFromXml(String xmlName) {
           .split('_')
           .each { nameBuilder.append(it.capitalize()) }
   return nameBuilder.toString()
+}
+
+static String getLastAfter(String text, String afterChar = "/") {
+  return text.substring(text.lastIndexOf(afterChar) + 1)
 }
 
