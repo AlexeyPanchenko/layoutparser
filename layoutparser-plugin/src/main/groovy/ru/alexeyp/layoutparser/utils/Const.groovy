@@ -24,10 +24,8 @@ class Const {
   public static final String ROOT_VIEW_NAME = "rootInflaterView"
   public static final String CONTEXT_NAME = "context"
   public static final String LAYOUTPARSER_NAME = "layoutparser"
-  public static final String INCLUDE_NAME = "include"
 
   public static final String INFLATER_SUFFIX = "Inflater"
-  public static final String XML_SUFFIX = ".xml"
   public static final String JAVA_SUFFIX = ".java"
   public static final String GENERATE_INFLATER_PREFIX = "i_"
 

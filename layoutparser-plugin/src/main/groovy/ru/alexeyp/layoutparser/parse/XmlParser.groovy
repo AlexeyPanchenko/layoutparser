@@ -6,6 +6,7 @@ import org.xml.sax.Attributes
 import org.xml.sax.helpers.DefaultHandler
 import ru.alexeyp.layoutparser.utils.Utils
 
+import static ru.alexeyp.layoutparser.parse.XmlConst.*
 import static ru.alexeyp.layoutparser.utils.Const.*
 
 class XmlParser extends DefaultHandler {
@@ -22,11 +23,11 @@ class XmlParser extends DefaultHandler {
 
   @Override
   void startElement(String uri, String localName, String qName, Attributes attributes) {
-    if (qName == "layout" || qName == "merge" || qName == "tag") {
+    if (qName == LAYOUT_NAME || qName == MERGE_NAME || qName == TAG_NAME) {
       return
     }
     if (qName == INCLUDE_NAME) {
-      String layoutName = attributes.getValue("layout")
+      String layoutName = attributes.getValue(LAYOUT_NAME)
       if (layoutName != null) {
         layoutName = "${Utils.getLastAfter(layoutName)}${XML_SUFFIX}"
         parseIncludeLayout(layoutName)
