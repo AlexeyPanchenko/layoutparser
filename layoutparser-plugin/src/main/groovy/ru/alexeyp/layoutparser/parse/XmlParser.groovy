@@ -49,14 +49,14 @@ class XmlParser extends DefaultHandler {
       elements.addAll(parser.elements)
     } catch (FileNotFoundException ignored) {
       logger.error(
-          "WARNING: XML Parser can`t find file with path: " + "${layoutsPath}/${layoutName}. "
-              + "It will try to search in ${layoutsAlternativePath}/$layoutName."
+        "WARNING: XML Parser can`t find file with path: " + "${layoutsPath}/${layoutName}. "
+          + "It will try to search in ${layoutsAlternativePath}/$layoutName."
       )
       parserFacade.parse(new File("${layoutsAlternativePath}/$layoutName"))
       elements.addAll(parser.elements)
     } catch (Exception e) {
       logger.error(
-          "WARNING: XML Parser could not handle <include layout='$layoutName'/>. " + "Stacktrace: $e"
+        "WARNING: XML Parser could not handle <include layout='$layoutName'/>. " + "Stacktrace: $e"
       )
     }
   }

@@ -6,9 +6,9 @@ package ru.alexeyp.layoutparser.utils
 static String formClassNameFromXml(String xmlName) {
   StringBuilder nameBuilder = new StringBuilder()
   xmlName
-          .replace('.xml', '')
-          .split('_')
-          .each { nameBuilder.append(it.capitalize()) }
+    .replace('.xml', '')
+    .split('_')
+    .each { nameBuilder.append(it.capitalize()) }
   return nameBuilder.toString()
 }
 

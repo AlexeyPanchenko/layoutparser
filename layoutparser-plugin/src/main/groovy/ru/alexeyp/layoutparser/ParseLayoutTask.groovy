@@ -39,8 +39,8 @@ class ParseLayoutTask extends DefaultTask {
   @TaskAction
   def generate() {
     layoutFiles
-            .findAll { it.name.startsWith(prefix) }
-            .each { generate(it) }
+      .findAll { it.name.startsWith(prefix) }
+      .each { generate(it) }
   }
 
   void generate(File xmlFile) {
@@ -54,7 +54,7 @@ class ParseLayoutTask extends DefaultTask {
     final String generatePckg = projectPckg + ".${LAYOUTPARSER_NAME}"
 
     final JavaFile javaFile = JavaFile.builder(
-        generatePckg, new InflaterGenerator(className, layoutName, projectPckg, parser.elements).generate()
+      generatePckg, new InflaterGenerator(className, layoutName, projectPckg, parser.elements).generate()
     ).build()
     javaFile.writeTo(outDir)
   }

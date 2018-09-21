@@ -40,11 +40,11 @@ public class InflaterGenerator {
   }
 
   private TypeSpec generateClass() {
-    TypeSpec.Builder builder =  TypeSpec
-        .classBuilder(className)
-        .addModifiers(Modifier.PUBLIC)
-        .addField(view, ROOT_VIEW_NAME, Modifier.PUBLIC, Modifier.FINAL)
-        .addMethod(formConstructor());
+    TypeSpec.Builder builder = TypeSpec
+      .classBuilder(className)
+      .addModifiers(Modifier.PUBLIC)
+      .addField(view, ROOT_VIEW_NAME, Modifier.PUBLIC, Modifier.FINAL)
+      .addMethod(formConstructor());
 
     for (XmlElement element : elements) {
       if (element.isValid()) {
@@ -57,15 +57,15 @@ public class InflaterGenerator {
 
   private FieldSpec formViewField(XmlElement element) {
     return FieldSpec
-        .builder(ClassName.get(element.pckgName, element.type), element.id, Modifier.PUBLIC, Modifier.FINAL)
-        .build();
+      .builder(ClassName.get(element.pckgName, element.type), element.id, Modifier.PUBLIC, Modifier.FINAL)
+      .build();
   }
 
   private MethodSpec formConstructor() {
     MethodSpec.Builder builder = MethodSpec.constructorBuilder()
-        .addModifiers(Modifier.PUBLIC)
-        .addParameter(ClassName.get(CONTEXT_PCKG, CONTEXT), CONTEXT_NAME)
-        .addStatement(ROOT_VIEW_NAME + " = $T.from(" + CONTEXT_NAME + ").inflate($T.layout." + layoutName + ", null)", inflater, r);
+      .addModifiers(Modifier.PUBLIC)
+      .addParameter(ClassName.get(CONTEXT_PCKG, CONTEXT), CONTEXT_NAME)
+      .addStatement(ROOT_VIEW_NAME + " = $T.from(" + CONTEXT_NAME + ").inflate($T.layout." + layoutName + ", null)", inflater, r);
 
     for (XmlElement element : elements) {
       if (element.isValid()) {

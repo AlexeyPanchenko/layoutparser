@@ -31,7 +31,7 @@ class LayoutParserPlugin implements Plugin<Project> {
     File[] xmlFiles = new File("${project.projectDir}$Const.LAYOUT_DIR").listFiles()
     File outputDir = new File(project.buildDir, "$Const.GENERATED_DIR${variant.dirName}")
     def task = project.tasks.create(
-            "parseLayout${variant.name.capitalize()}", ParseLayoutTask
+      "parseLayout${variant.name.capitalize()}", ParseLayoutTask
     ) {
       outDir = outputDir
       layoutFiles = xmlFiles

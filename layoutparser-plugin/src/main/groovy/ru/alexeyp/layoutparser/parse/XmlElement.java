@@ -19,9 +19,9 @@ public class XmlElement {
   @Override
   public String toString() {
     return "XmlElement{" +
-        "id='" + id + '\'' +
-        ", type='" + type + '\'' +
-        ", importName='" + pckgName + '\'' +
-        '}';
+      "id='" + id + '\'' +
+      ", type='" + type + '\'' +
+      ", importName='" + pckgName + '\'' +
+      '}';
   }
 }
